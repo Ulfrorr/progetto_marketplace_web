@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { MOCK } from '../../../mock-data';
-import { Site, Time } from '../../../model/site';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ReservationModalComponent } from '../components/reservation-modal.component';
-import { filter } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { MOCK } from '../../../mock-data';
+import { Site, Time } from '../../../model/site';
+import { ReservationModalComponent } from '../components/reservation-modal.component';
+
 
 @Injectable({ providedIn: 'root' })
 export class ReservationService {
@@ -20,7 +21,6 @@ export class ReservationService {
   getSites(): void {
     this.sites$.next(MOCK);
   }
-
   /**
    * Select a site
    * It opens a modal when a site is selected.
