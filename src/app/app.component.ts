@@ -16,13 +16,13 @@ import { Apiservices } from './features/reservation/services/api.service';
 
 })
 export class AppComponent implements OnInit {
-  venues$ = new BehaviorSubject([]);
+  venues$ = new BehaviorSubject<any[]>([]);
 
   constructor(private readonly Apiservices: Apiservices) { }
 
   ngOnInit(): void {
-    this.Apiservices.getVenues().subscribe((venusFromApi) => {
-      this.venues$.next(venusFromApi)
+    this.Apiservices.getVenues().subscribe((venuesFromapi) => {
+      return this.venues$.next(venuesFromapi);
     });
   }
 }

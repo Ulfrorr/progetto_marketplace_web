@@ -1,16 +1,11 @@
 import {
-  Component,
-  ElementRef,
-  Input,
-  OnChanges,
-  EventEmitter,
-  Output,
+  ChangeDetectionStrategy, Component,
+  ElementRef, EventEmitter, Input,
+  OnChanges, Output,
   SimpleChanges,
-  ViewChild,
-  ChangeDetectionStrategy
+  ViewChild
 } from '@angular/core';
 import * as L from 'leaflet';
-import { LatLngTuple } from 'leaflet';
 import { Coords, Site } from '../../../model/site';
 
 const mapTheme = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark';
@@ -44,14 +39,15 @@ export class ReservationMapComponent implements OnChanges {
   /**
    * When sites are
    */
-  ngOnChanges( changes: SimpleChanges ): void {
+  ngOnChanges(changes: SimpleChanges): void {
     // First time ==> init map
     if (changes.sites && changes.sites.isFirstChange()) {
       this.initMap();
+
     }
 
     // when currentSite changes
-    if (changes.currentSite.currentValue) {
+    if (changes.currentSite?.currentValue) {
       // Pan To current Site
       this.leafletMap.setView(changes.currentSite.currentValue, 11);
     } else {
@@ -66,7 +62,6 @@ export class ReservationMapComponent implements OnChanges {
   initMap(): void {
     this.leafletMap = L.map(this.host.nativeElement);
     L.tileLayer(mapTheme + '/{z}/{x}/{y}{r}.png').addTo(this.leafletMap);
-    this.leafletMap.attributionControl.setPrefix('Created by Fabio Biondi - Talent Factory')
     this.drawMarkers();
   }
 
@@ -77,7 +72,7 @@ export class ReservationMapComponent implements OnChanges {
   drawMarkers(): void {
     this.sites?.forEach(site => {
       const seats = site.availableDates
-      L.marker(site.coords, {icon: seats.length ? IconWhite : IconRed})
+      L.marker(site.coords, { icon: seats.length ? IconWhite : IconRed })
         .bindTooltip(
           `${site.name}:
            ${seats.length ? seats.length + ' available dates' : 'no available dates'}`
@@ -96,11 +91,12 @@ export class ReservationMapComponent implements OnChanges {
    */
   fitBounds(): void {
     const coords = this.sites?.map(m => m.coords);
-    if (coords) {
+    if (coords && coords.length > 0) {
       this.leafletMap.fitBounds(coords, {
         padding: [10, 10],
       })
     }
+    this.drawMarkers();
   }
 
 }
