@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { MOCK } from 'src/app/mock-data';
 import { Coords, Site, Time } from '../../../model/site';
 import { ReservationModalComponent } from '../components/reservation-modal.component';
 import { Apiservices } from './api.service';
@@ -19,6 +20,7 @@ export class ReservationService {
    * Load all Sites (locations)
    */
   getSites(): void {
+    this.sites$.next(MOCK);
     this.apiservices
       .getVenues()
       .pipe(
@@ -31,6 +33,7 @@ export class ReservationService {
               venuesFromBackend.position.coordinates.lng,
             ] as Coords,
             availableDates: [],
+
           }))
         })
       )

@@ -11,7 +11,8 @@ export class Apiservices {
     return this.httpClient.get<{
       id: string;
       name: string;
-      position: { coordinates: { lat: Number; lng: Number } };
+      position: { coordinates: { lat: Number; lng: Number } }
+      availableDates: string;
     }[]>('https://api.nibol.co/v2/app/venues', {
       params: {},
     })

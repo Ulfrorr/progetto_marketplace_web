@@ -75,7 +75,7 @@ export class ReservationMapComponent implements OnChanges {
       L.marker(site.coords, { icon: seats.length ? IconWhite : IconRed })
         .bindTooltip(
           `${site.name}:
-           ${seats.length ? seats.length + ' available dates' : 'no available dates'}`
+           ${seats.length ? seats.length + ' No Temporary Suspended' : 'Temporary Suspended'}`
         )
         .on('click', () => {
           if (seats.length) {
