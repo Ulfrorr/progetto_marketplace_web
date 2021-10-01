@@ -2,7 +2,8 @@ export interface Site {
   id: string;
   name: string;
   coords: Coords;
-  availableDates: Seat[]
+  availableDates: Seat[];
+  picture: string;
 }
 
 export interface Seat {
@@ -11,4 +12,3 @@ export interface Seat {
 }
 export type Coords = [number, number];
 export type Time = [string, string];
-

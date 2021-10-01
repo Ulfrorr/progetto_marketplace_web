@@ -15,6 +15,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RatingModule } from 'ng-starrating';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LeafletMapComponent } from './features/leaflet-simple-demo/components/leaflet-map.component';
@@ -36,6 +37,7 @@ import { ReservationComponent } from './features/reservation/reservation.compone
     LeafletSimpleDemoComponent,
   ],
   imports: [
+    RatingModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -56,8 +58,7 @@ import { ReservationComponent } from './features/reservation/reservation.compone
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  providers: [
-  ],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
